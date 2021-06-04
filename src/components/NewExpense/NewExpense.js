@@ -7,8 +7,6 @@ const NewExpense = (props) => {
       ...enteredExpenseData,
       id: Math.floor(Math.random() * Number.MAX_SAFE_INTEGER),
     };
-    console.log(expenseData.id);
-    console.log(expenseData);
     props.onAddExpense(expenseData);
   }
   return (
