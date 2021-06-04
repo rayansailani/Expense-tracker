@@ -4,6 +4,8 @@ const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
+  const tomorrow = new Date();
+  
   // const [userInput, setUserInput] = useState({
   //   enteredTitle: "",
   //   enteredAmount: "",
@@ -27,7 +29,7 @@ const ExpenseForm = (props) => {
     // })
     // setUserInput((prevState)=>{
     //   return {...prevState, enteredAmount:event.target.value};
-    // });
+    // }); 
     setEnteredAmount(event.target.value);
   };
   const dateChangeHandler = (event) => {
@@ -86,9 +88,8 @@ const ExpenseForm = (props) => {
           <input
             type="date"
             value={enteredDate}
-            min="2019-01-01"
             onChange={dateChangeHandler}
-            max="2022-01-01"
+            max={(tomorrow.getDate()+1).toString()+"-"+(tomorrow.getMonth()).toString()+"-"+(tomorrow.getFullYear()).toString()}
             id=""
           />
         </div>
