@@ -5,7 +5,7 @@ const ExpenseForm = (props) => {
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
   const tomorrow = new Date();
-  
+
   // const [userInput, setUserInput] = useState({
   //   enteredTitle: "",
   //   enteredAmount: "",
@@ -29,7 +29,7 @@ const ExpenseForm = (props) => {
     // })
     // setUserInput((prevState)=>{
     //   return {...prevState, enteredAmount:event.target.value};
-    // }); 
+    // });
     setEnteredAmount(event.target.value);
   };
   const dateChangeHandler = (event) => {
@@ -51,7 +51,7 @@ const ExpenseForm = (props) => {
     const expenseData = {
       title: enteredTitle,
       amount: parseFloat(enteredAmount),
-      date: new Date(enteredDate)
+      date: new Date(enteredDate),
     };
     // console.log(expenseData);
     props.onSaveExpenseData(expenseData);
@@ -67,19 +67,25 @@ const ExpenseForm = (props) => {
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
-          <input type="text" value={enteredTitle} onChange={titleChangeHandler} id="" />
+          <input
+            type="text"
+            value={enteredTitle}
+            onChange={titleChangeHandler}
+            id=""
+            required="true"
+          />
         </div>
 
         <div className="new-expense__control">
           <label>Amount</label>
           <input
-
             type="number"
             min="0"
             value={enteredAmount}
             onChange={amountChangeHandler}
             step="0.01"
             id=""
+            required="true"
           />
         </div>
 
@@ -89,15 +95,21 @@ const ExpenseForm = (props) => {
             type="date"
             value={enteredDate}
             onChange={dateChangeHandler}
-            max={(tomorrow.getDate()+1).toString()+"-"+(tomorrow.getMonth()).toString()+"-"+(tomorrow.getFullYear()).toString()}
+            max={
+              (tomorrow.getDate() + 1).toString() +
+              "-" +
+              tomorrow.getMonth().toString() +
+              "-" +
+              tomorrow.getFullYear().toString()
+            }
             id=""
+            required="true"
           />
         </div>
 
         <div className="new-expense__actions">
-          <button type="submit" >
-            Add Expense
-          </button>
+          <button type="submit">Add Expense</button>
+          <button type="button" onClick={props.onClickCancel}>Cancel</button>
         </div>
       </div>
     </form>
